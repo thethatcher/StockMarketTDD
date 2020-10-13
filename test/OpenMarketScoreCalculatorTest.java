@@ -5,37 +5,37 @@ import org.junit.jupiter.api.Test;
 
 class OpenMarketScoreCalculatorTest {
 	OpenMarketScoreCalculator sc;
+	Pot pot;
 	
 	@BeforeEach
 	public void setup() {		
-		sc = new OpenMarketScoreCalculator(new Pot());
+		sc = new OpenMarketScoreCalculator();
+		pot = new Pot();
+		pot.setCurrentPotValue(50);
 	}
 	
 	@Test
 	public void calculateScore_OneTwo_is3() {
-		int points = sc.calculateScore(1,2);
+		int points = sc.calculateScore(1,2, pot);
 		assertEquals(points,3);
 	}
 	
 	@Test
 	public void calculateScore_TwoThree_is5() {
-		int points = sc.calculateScore(2,3);
+		int points = sc.calculateScore(2,3, pot);
 		assertEquals(points,5);
 	}
 
 	@Test
 	public void caclulateScore_ThreeFour_is0() {
-		int points = sc.calculateScore(3,4);
+		int points = sc.calculateScore(3,4, pot);
 		assertEquals(points,0);
 	}
 	
 	@Test
+	
 	public void calculateScore_doubles_isDoubled() {
-		//setup
-		sc.pot.setCurrentPotValue(50);
-		//execute
-		int points = sc.calculateScore(1,1);
-		//assert
+		int points = sc.calculateScore(2,2, pot);
 		assertEquals(points, 50);
 	}
 /*	

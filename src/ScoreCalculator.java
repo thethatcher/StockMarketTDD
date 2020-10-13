@@ -1,4 +1,4 @@
 
 public interface ScoreCalculator {
-	public int calculateScore(int die1, int die2);
+	public int calculateScore(int die1, int die2, Pot pot);
 }
