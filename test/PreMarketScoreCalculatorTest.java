@@ -10,25 +10,26 @@ class PreMarketScoreCalculatorTest {
 	@BeforeEach
 	void setUp() {
 		sc = new PreMarketScoreCalculator();
-		pot = new Pot();
-		pot.setCurrentPotValue(50);
 	}
 
 	@Test
 	void calculateScore_OneTwo_is3() {
-		int points = sc.calculateScore(1,2, pot);
-		assertEquals(points, 3);
+		RollResult rollResult = sc.calculateScore(1,2);
+		assertEquals(rollResult.points, 3);
+		assertEquals(rollResult.potOperation, RollResult.Operation.ADD);
 	}
 
 	@Test
 	void calculateScore_FourSix_is10() {
-		int points = sc.calculateScore(4,6, pot);
-		assertEquals(points, 10);
+		RollResult rollResult = sc.calculateScore(4,6);
+		assertEquals(rollResult.points, 10);
+		assertEquals(rollResult.potOperation, RollResult.Operation.ADD);
 	}
 	
 	@Test
 	void calculateScore_seven_is70() {
-		int points = sc.calculateScore(1,6, pot);
-		assertEquals(points, 70);
+		RollResult rollResult = sc.calculateScore(1,6);
+		assertEquals(rollResult.points, 70);
+		assertEquals(rollResult.potOperation, RollResult.Operation.ADD);
 	}
 }

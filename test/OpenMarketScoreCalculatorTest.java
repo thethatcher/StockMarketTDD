@@ -5,38 +5,37 @@ import org.junit.jupiter.api.Test;
 
 class OpenMarketScoreCalculatorTest {
 	OpenMarketScoreCalculator sc;
-	Pot pot;
 	
 	@BeforeEach
 	public void setup() {		
 		sc = new OpenMarketScoreCalculator();
-		pot = new Pot();
-		pot.setCurrentPotValue(50);
 	}
 	
 	@Test
 	public void calculateScore_OneTwo_is3() {
-		int points = sc.calculateScore(1,2, pot);
-		assertEquals(points,3);
+		RollResult rollResult = sc.calculateScore(1,2);
+		assertEquals(rollResult.points,3);
+		assertEquals(rollResult.potOperation, RollResult.Operation.ADD);
 	}
 	
 	@Test
 	public void calculateScore_TwoThree_is5() {
-		int points = sc.calculateScore(2,3, pot);
-		assertEquals(points,5);
+		RollResult rollResult = sc.calculateScore(2,3);
+		assertEquals(rollResult.points,5);
+		assertEquals(rollResult.potOperation, RollResult.Operation.ADD);
 	}
 
 	@Test
-	public void caclulateScore_ThreeFour_is0() {
-		int points = sc.calculateScore(3,4, pot);
-		assertEquals(points,0);
+	public void caclulateScore_ThreeFour_isBust() {
+		RollResult rollResult = sc.calculateScore(3,4);
+		assertEquals(rollResult.potOperation,RollResult.Operation.BUST);
 	}
 	
 	@Test
 	
-	public void calculateScore_doubles_isDoubled() {
-		int points = sc.calculateScore(2,2, pot);
-		assertEquals(points, 50);
+	public void calculateScore_doubles_isDouble() {
+		RollResult rollResult = sc.calculateScore(2,2);
+		assertEquals(rollResult.potOperation, RollResult.Operation.DOUBLE);
 	}
 /*	
  * 
