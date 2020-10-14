@@ -70,4 +70,39 @@ class PotTest {
 		pot.rollDice(dr);
 		assertEquals(pot.getCurrentPotValue(),30);
 	}
+	
+	@Test 
+	void tenthRoll_manyRolls_is1234(){
+		DiceRoller dr = new DiceRoller(2,3);
+		pot.rollDice(dr); //5
+		assertEquals(pot.getCurrentPotValue(),5);
+		dr = new DiceRoller(3,4); //75
+		pot.rollDice(dr);
+		assertEquals(pot.getCurrentPotValue(),75);
+		dr = new DiceRoller(6,5); //86
+		pot.rollDice(dr);
+		assertEquals(pot.getCurrentPotValue(),86);
+		//Open Market
+		dr = new DiceRoller(1,3); //90
+		pot.rollDice(dr);
+		assertEquals(pot.getCurrentPotValue(),90);
+		dr = new DiceRoller(5,5); //180
+		pot.rollDice(dr);
+		assertEquals(pot.getCurrentPotValue(),180);
+		dr = new DiceRoller(1,5); //186
+		pot.rollDice(dr);
+		assertEquals(pot.getCurrentPotValue(),186);
+		dr = new DiceRoller(1,1); //372
+		pot.rollDice(dr);
+		assertEquals(pot.getCurrentPotValue(),372);
+		dr = new DiceRoller(6,6); //744
+		pot.rollDice(dr);
+		assertEquals(pot.getCurrentPotValue(),744);
+		dr = new DiceRoller(3,2); //749
+		pot.rollDice(dr);
+		assertEquals(pot.getCurrentPotValue(),749);
+		dr = new DiceRoller(6,1); // 0
+		pot.rollDice(dr);
+		assertEquals(pot.getCurrentPotValue(),0);
+	}
 }
