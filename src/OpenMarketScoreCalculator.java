@@ -14,6 +14,7 @@ public class OpenMarketScoreCalculator implements ScoreCalculator{
 			rollResult.points = sum;
 			rollResult.potOperation = RollResult.Operation.ADD;
 		}
+		
 		return rollResult;
 	}
 }
